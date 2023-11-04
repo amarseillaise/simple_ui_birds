@@ -6,12 +6,12 @@ import re
 import sqlite3
 
 # # mobile version
-# DATA_BASE_NAME = "//data/data/ru.travelfood.simple_ui/databases/birds"
-# TEMP_PHOTO_PATH = "//data/data/ru.travelfood.simple_ui/birds/TempPhoto/"
+DATA_BASE_NAME = "//data/data/ru.travelfood.simple_ui/databases/birds"
+TEMP_PHOTO_PATH = "//data/data/ru.travelfood.simple_ui/birds/TempPhoto/"
 
 # web version
-DATA_BASE_NAME = "birds"
-TEMP_PHOTO_PATH = ""
+# DATA_BASE_NAME = "birds"
+# TEMP_PHOTO_PATH = ""
 
 global_bird_id = ""
 
