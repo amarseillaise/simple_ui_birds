@@ -18,7 +18,7 @@ global_bird_id = ""
 
 def init_on_start(hashMap, _files=None, _data=None):
     # shutil.copy2("//data/data/ru.travelfood.simple_ui/databases/birds", "//sdcard") # Выгрузить БД из эмулятора
-    # shutil.copy2("//sdcard", "//data/data/ru.travelfood.simple_ui/databases/birds") # Загрузить БД в эмулятор
+    # shutil.copy2("//sdcard/birds", "//data/data/ru.travelfood.simple_ui/databases") # Загрузить БД в эмулятор
     Path(TEMP_PHOTO_PATH).mkdir(parents=True, exist_ok=True)
     connection = sqlite3.connect(DATA_BASE_NAME)
     cursor = connection.cursor()
@@ -186,6 +186,21 @@ def on_press_seen_table(hashMap, _files=None, _data=None):
             hashMap.put("toast", "Вы не увидели никакую птицу")
 
     return hashMap
+
+
+def on_get_bd(hashMap, _files=None, _data=None):
+    if hashMap.get("listener") == "import_btn":
+        file_name = hashMap.get("bd_fname")
+        if not file_name:
+            hashMap.put("toast", "Вы не ввели название файла")
+            return hashMap
+        try:
+            shutil.copy2(f"//sdcard/{file_name}", "//data/data/ru.travelfood.simple_ui/databases/")
+            hashMap.put("toast", "База данных успешно импортирована")
+        except FileNotFoundError:
+            hashMap.put("toast", "Файла с указанным именем не найдено в директории //sdcard")
+        finally:
+            return hashMap
 
 
 class Utils:
